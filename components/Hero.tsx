@@ -8,11 +8,13 @@ import { IoBedOutline } from "react-icons/io5";
 import Dropdown from "./Dropdown";
 import { TbBuildings } from "react-icons/tb";
 import { FiUsers } from "react-icons/fi";
+import RegisterModal from "./RegisterModal";
 
 const Hero = () => {
   const [selectedRoomType, setSelectedRoomType] = useState(roomTypes[0].id.toString());
   const [selectedBlock, setSelectedBlock] = useState(blocks[0].id.toString());
   const [selectedStudents, setSelectedStudents] = useState("4");
+  const [openRegisterModal, setOpenRegisterModal] = useState(false);
 
   useEffect(() => {
     setSelectedStudents(roomTypes.find(room => room.id === +selectedRoomType)?.id.toString() || "4");
@@ -76,10 +78,12 @@ const Hero = () => {
             />
           </div>
         </div>
-        <div className="w-[12%]">
-          <button className="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-md w-full">Register</button>
+        <div className="w-[13%]">
+          <button className="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-md w-full" onClick={() => setOpenRegisterModal(true)}>Register</button>
         </div>
       </div>
+
+      <RegisterModal open={openRegisterModal} handleClose={() => setOpenRegisterModal(false)} />
     </div>
   );
 };
